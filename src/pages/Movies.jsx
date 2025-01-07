@@ -1,21 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import axiosInstance from "../apis/config.js";
 import MovieCard from "../components/MovieCard";
 import { useNavigate } from "react-router";
+import LanguageContext from "../context/language";
 export default function Movies() {
   //const [inputVal, setInputVal] = useState("");
   const [movies, setMovies] = useState();
   const [filteredMovies, setFileredMovies] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const {lang} = useContext(LanguageContext);
+  const url = `discover/movie?api_key=50f1d533196bb57b9d729417fbd43927&language=${lang}`
 
   useEffect(() => {
     axiosInstance
-      .get("discover/movie?api_key=50f1d533196bb57b9d729417fbd43927")
+      .get(url)
       .then((res) => {
         setMovies(res.data.results);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [lang]);
   
   function handleSearch(name) {
     setFileredMovies(name

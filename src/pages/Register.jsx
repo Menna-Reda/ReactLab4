@@ -17,7 +17,7 @@ export default function Register() {
         confirmPasswordError: null,
     });
 
-    const [submitted, setSubmitted] = useState(false); // To track if the form is submitted
+    const [submitted, setSubmitted] = useState(false); 
 
     const emailRegex = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
     const passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@%*$#])[A-Za-z\\d@%*$#]{8,}$");
@@ -100,7 +100,6 @@ export default function Register() {
         e.preventDefault();
         setSubmitted(true); // Trigger to show all errors
 
-        // If there are no errors, alert the form data
         if (
             !formErrors.nameError &&
             !formErrors.emailError &&
